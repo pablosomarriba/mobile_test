@@ -7,15 +7,9 @@
 
 import Foundation
 
-// To parse the JSON, add this file to your project and do:
-//
-//   let marvelDetailData = try? newJSONDecoder().decode(MarvelDetailData.self, from: jsonData)
-
-import Foundation
-
 // MARK: - MarvelDetailData
 struct MarvelDetailData: Codable {
-    let code: Int?
+    //let code: Int?
     let status, copyright, attributionText, attributionHTML: String?
     let etag: String?
     let data: DataClassDetail?

@@ -18,7 +18,6 @@ class DetailPresenter: DetailPresenterProtocol  {
     
     // TODO: implement presenter methods
     func viewDidLoad() {
-        print("Vista de detalle name y tengo el dato: \(String(describing: detail?.datoURL))")
 
         //Traer datos con url del detalle
         interactor?.interactorGetData()
@@ -33,7 +32,6 @@ class DetailPresenter: DetailPresenterProtocol  {
     func pushDataDesc(sendData: DetailMarvelURL) {
         view?.presenter?.interactor?.pushDataDesc(sendData: sendData)
     }
-
     
 }
 
@@ -41,7 +39,5 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
     func interactorPushDataPresenter(receiveData: DetailMarvelDesc) {
         view?.presenterPushDataView(recievedData: receiveData)
         view?.stopAndHideActivity()
-    }
-    
-    // TODO: implement interactor output methods
+    }    
 }

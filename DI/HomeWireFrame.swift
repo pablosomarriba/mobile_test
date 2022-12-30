@@ -34,6 +34,7 @@ class HomeWireFrame: HomeWireFrameProtocol {
     }
     
     func presentNewViewDetail(from view: HomeViewProtocol, withData: DetailMarvelURL) {
+        
         //Añadir nuevo modulo e instanciarlo Detail
         let newDetailView = DetailWireFrame.createDetailModule(with: withData)
         if let newView = view as? UIViewController {

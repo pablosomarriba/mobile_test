@@ -18,7 +18,7 @@ class HomeInteractor: HomeInteractorInputProtocol {
     var arrayMarvel =  [MarvelGroupData]()
     
     func interactorGetData() {
-        //Decirle a la capa de conexión external data manager que tiene que traer unos datos
+        //Comunnicar capa de conexión external data manager para traer unos datos
         remoteDatamanager?.externalGetData()
     }
 
@@ -27,8 +27,6 @@ class HomeInteractor: HomeInteractorInputProtocol {
 extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
     
     func remoteDataManagerCallBackData(with category: [MarvelGroupData]) {
-        //El interactor debe enviarle los datos al presenter
-        print("Estoy obteniendo estos datos: \(category)")
         
         //Recorrer el objeto category y conforma el objeto DatoURL
         for dat in category {
@@ -36,7 +34,6 @@ extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
             self.arrayMarvel.append(marvelGroup)
             print(arrayMarvel)
         }
-        print("Le paso al presenter:\(self.arrayMarvel)")
         
         //Pasarle los datos al presenter
         presenter?.interactorPushDataPresenter(receiveData: self.arrayMarvel)

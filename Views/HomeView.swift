@@ -40,6 +40,7 @@ class HomeView: UIViewController {
         self.spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
         self.spinner?.color = .black
         self.spinner?.style = .medium
+        
         // Position Activity Indicator in the center of the main view
         self.spinner?.center = view.center
         // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
@@ -55,7 +56,7 @@ extension HomeView: HomeViewProtocol {
 
     // TODO: implement view output methods
     
-    //Esto sería una inyección de dependencias => Pasar los datos de un objeto a otro
+    //Inyección de dependencias => Paso los datos de un objeto a otro
     func presenterPushDataView(recievedData: [MarvelGroupData]) {
         
         arrayViewMarvel = recievedData
@@ -92,14 +93,15 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
                 
-        
+
+        //Image
         let xOffsetImg: CGFloat = 10
-        //let contentViewFrame = cell.contentView.frame
         let imageView = UIImageView()
         imageView.image = self.arrayViewMarvel[indexPath.row].image
         imageView.frame = CGRectMake(xOffsetImg, CGFloat(0), CGFloat(30), CGFloat(30))
         cell.contentView.addSubview(imageView)
 
+        //Label
         let xOffsetTxt: CGFloat = 50
         let textName = UILabel()
         textName.textColor = .black

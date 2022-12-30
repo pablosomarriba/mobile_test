@@ -17,6 +17,7 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
     var marvelListData = [MarvelListData]()
     var arrayMarvel =  [MarvelGroupData]()
     let myGroup = DispatchGroup()
+    let env = Environment()
     
     
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
@@ -24,7 +25,7 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
     }
     
     func downloadImage(from url: URL, name: String, id: Int, urlId: String) {
-        print("Download Started")
+
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else {
                 self.myGroup.leave()
@@ -43,29 +44,31 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
     
     func externalGetData() {
                 
-        var apiKeyTsHash: String {
-            get {
-                //let limit = 1
-                let apikey = "cdb9b66985f6523d88b3b820037f895f"
-                let ts = "1529959176"
-                let hash = "fc9bc3330d53b8b9d28c88aa707473b7"
-                //return "apikey=\(apikey)&ts=\(ts)&hash=\(hash)&limit=\(limit)"
-                return "apikey=\(apikey)&ts=\(ts)&hash=\(hash)"
-            }
-        }
+       // var apiKeyTsHash: String {
+       //     get {
+       //         //let limit = 1
+       //         let apikey = "cdb9b66985f6523d88b3b820037f895f"
+       //         let ts = "1529959176"
+       //         let hash = "fc9bc3330d53b8b9d28c88aa707473b7"
+       //         //return "apikey=\(apikey)&ts=\(ts)&hash=\(hash)&limit=\(limit)"
+       //         return "apikey=\(apikey)&ts=\(ts)&hash=\(hash)"
+       //     }
+       // }
+       //
+       // var baseUrl: String {
+       //     get {
+       //         return "https://gateway.marvel.com/v1/public/"
+       //     }
+       // }
+       //
+       // let characters = "characters?"
+       // let charactersId = "characters/"
+       //
+       // let apiURL = baseUrl + characters + apiKeyTsHash //+ "&offset=0&nameStartsWith=Spi"
         
-        var baseUrl: String {
-            get {
-                return "https://gateway.marvel.com/v1/public/"
-            }
-        }
-                
-        let characters = "characters?"
-        let charactersId = "characters/"
+        env.getEnv()
         
-        let apiURL = baseUrl + characters + apiKeyTsHash //+ "&offset=0&nameStartsWith=Spi"
-        
-        _ = AF.request(apiURL,method: HTTPMethod.get, encoding: JSONEncoding.default).responseDecodable(of: MarvelListData.self) { response in
+        _ = AF.request(env.apiURL,method: HTTPMethod.get, encoding: JSONEncoding.default).responseDecodable(of: MarvelListData.self) { response in
             switch response.result {
             case let .success(data):
                 print("Alamofire =>")
@@ -77,7 +80,7 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
                     guard let nameMarvel = datMarvel.name else {return}
                     guard let imageMarvelUrl = datMarvel.thumbnail?.path else {return}
                     guard let imageMarvelExt = datMarvel.thumbnail?.thumbnailExtension?.rawValue else {return}
-                    let urlId = baseUrl + charactersId + String(idMarvel) + "?" + apiKeyTsHash
+                    let urlId = self.env.baseUrl + self.env.charactId + String(idMarvel) + "?" + self.env.apiKey
                     let imageMarvel = imageMarvelUrl + "." + imageMarvelExt
                     let url = URL(string: imageMarvel)
                     self.downloadImage(from: url!, name: nameMarvel, id: idMarvel, urlId: urlId )

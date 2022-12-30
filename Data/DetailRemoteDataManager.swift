@@ -21,7 +21,6 @@ class DetailRemoteDataManager:DetailRemoteDataManagerInputProtocol {
             _ = AF.request(self.urlDetail, method: HTTPMethod.get, encoding: JSONEncoding.default).responseDecodable(of: MarvelDetailData.self)  { response in
                switch response.result {
                case let .success(data):
-                   print("Alamofire =>")
                    guard var desc = data.data?.results![0].resultDescription else {return}
                    if desc.isEmpty {
                        desc = (data.data?.results![0].name)!
