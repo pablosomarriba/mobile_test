@@ -5,6 +5,10 @@ Ejercio para la creación de la estructura de una app que muestre un listado de 
 ## Swift
 versión 5.6
 
+## Git
+
+Métodología de trabajo empleada Git Flow
+
 ## Packages
 El administrador de dependencias utilizado fue Cocoapods.
 * Alamofire
