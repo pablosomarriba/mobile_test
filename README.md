@@ -7,7 +7,7 @@ versión 5.6
 
 ## Git
 
-Métodología de trabajo empleada Git Flow
+Metodología de trabajo empleada Git Flow
 
 ## Packages
 El administrador de dependencias utilizado fue Cocoapods.
