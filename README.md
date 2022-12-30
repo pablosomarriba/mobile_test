@@ -2,6 +2,9 @@
 
 Ejercio para la creación de la estructura de una app que muestre un listado de los personajes Marvel y permite ver el detalle de cada uno de ellos de manera individual.
 
+## Swift
+versión 5.6
+
 ## Packages
 El administrador de dependencias utilizado fue Cocoapods.
 * Alamofire
