@@ -113,7 +113,7 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //presenter?.showDetailView(with: MarvelGroupData(name: self.arrayViewMarvel[indexPath.row].name, image: self.arrayViewMarvel[indexPath.row].image))
+        presenter?.showDetailView(with: DetailMarvelURL(datoURL: self.arrayViewMarvel[indexPath.row].url))
     }
     
     

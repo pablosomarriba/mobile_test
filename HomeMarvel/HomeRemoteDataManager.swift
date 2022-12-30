@@ -23,7 +23,7 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
-    func downloadImage(from url: URL, name: String, id: Int) {
+    func downloadImage(from url: URL, name: String, id: Int, urlId: String) {
         print("Download Started")
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else {
@@ -35,7 +35,7 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
             DispatchQueue.main.async() {
                 self.myGroup.leave()
                 let imgMarvel =  UIImage(data: data)
-                let groupMarvel = MarvelGroupData(id: id, name: name,image: imgMarvel! )
+                let groupMarvel = MarvelGroupData(id: id, name: name,image: imgMarvel!,url: urlId )
                 self.arrayMarvel.append(groupMarvel)
             }
         }
@@ -76,9 +76,10 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
                     guard let nameMarvel = datMarvel.name else {return}
                     guard let imageMarvelUrl = datMarvel.thumbnail?.path else {return}
                     guard let imageMarvelExt = datMarvel.thumbnail?.thumbnailExtension?.rawValue else {return}
+                    let urlId = baseUrl + String(idMarvel) + apiKeyTsHash
                     let imageMarvel = imageMarvelUrl + "." + imageMarvelExt
                     let url = URL(string: imageMarvel)
-                    self.downloadImage(from: url!, name: nameMarvel, id: idMarvel )
+                    self.downloadImage(from: url!, name: nameMarvel, id: idMarvel, urlId: urlId )
                 }
                 
                 //Enviar de vuelta los datos al interactor

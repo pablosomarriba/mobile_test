@@ -10,5 +10,4 @@ import UIKit
 
 struct DetailMarvelURL {
     var datoURL: String
-    var imageList: String
 }

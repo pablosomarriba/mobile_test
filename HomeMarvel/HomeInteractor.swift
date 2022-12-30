@@ -32,7 +32,7 @@ extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
         
         //Recorrer el objeto category y conforma el objeto DatoURL
         for dat in category {
-            let marvelGroup = MarvelGroupData(id: dat.id, name: dat.name, image: dat.image)
+            let marvelGroup = MarvelGroupData(id: dat.id, name: dat.name, image: dat.image, url: dat.url)
             self.arrayMarvel.append(marvelGroup)
             print(arrayMarvel)
         }

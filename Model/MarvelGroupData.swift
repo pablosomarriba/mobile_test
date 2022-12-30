@@ -12,4 +12,5 @@ struct MarvelGroupData {
     var id: Int
     var name: String
     var image: UIImage
+    var url: String
 }
