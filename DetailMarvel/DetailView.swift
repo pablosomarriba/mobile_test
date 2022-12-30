@@ -24,13 +24,12 @@ class DetailView: UIViewController {
         presenter?.viewDidLoad()
         
         self.view.backgroundColor = .white
-        self.labelDetalle = UILabel(frame: CGRect(x: 20, y: 0, width: 350, height: 350))
+        self.labelDetalle = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 350))
         self.labelDetalle?.font = UIFont.preferredFont(forTextStyle: .footnote)
         self.labelDetalle?.textColor = .black
-        self.labelDetalle?.center = CGPoint(x: 160, y: 284)
+        //self.labelDetalle?.center = CGPoint(x: 20, y: 284)
         self.labelDetalle?.textAlignment = .center
         self.labelDetalle?.numberOfLines = 0
-        //self.labelDetalle?.text = "Start with AppDelegate => Prueba de texto"
         self.view.addSubview(self.labelDetalle!)
     }
 }
@@ -43,7 +42,7 @@ extension DetailView: DetailViewProtocol {
     func presenterPushDataView(recievedData: DetailMarvelDesc) {
         
         let description = recievedData
-        self.labelDetalle?.text! += description.datoDesc
+        self.labelDetalle?.text! += "\n\n" + description.datoDesc
         
     }
     
