@@ -40,7 +40,7 @@ class Environment {
         self.charactId = "characters/"
         self.apiKey = apiKeyTsHash
         
-        self.apiURL = baseUrl + self.charact + apiKeyTsHash //+ "&offset=0&nameStartsWith=Spi"
+        self.apiURL = baseUrl + self.charact + apiKeyTsHash
 
     }
     
