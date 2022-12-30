@@ -14,6 +14,8 @@ class DetailView: UIViewController {
     // MARK: Properties
     var presenter: DetailPresenterProtocol?
     var labelDetalle: UILabel?
+    
+    var spinner: UIActivityIndicatorView?
 
     // MARK: Lifecycle
 
@@ -22,7 +24,7 @@ class DetailView: UIViewController {
         presenter?.viewDidLoad()
         
         self.view.backgroundColor = .white
-        self.labelDetalle = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 21))
+        self.labelDetalle = UILabel(frame: CGRect(x: 20, y: 0, width: 350, height: 350))
         self.labelDetalle?.font = UIFont.preferredFont(forTextStyle: .footnote)
         self.labelDetalle?.textColor = .black
         self.labelDetalle?.center = CGPoint(x: 160, y: 284)
@@ -38,10 +40,35 @@ extension DetailView: DetailViewProtocol {
     
     // TODO: implement view output methods
     
-    func showDataInLabel(data: DetailMarvelURL) {
-            
+    func presenterPushDataView(recievedData: DetailMarvelDesc) {
+        
+        let description = recievedData
+        self.labelDetalle?.text! += description.datoDesc
+        
+    }
+    
+    func cargarActivity() {
         DispatchQueue.main.async {
-            self.labelDetalle?.text = data.datoURL
+            self.spinner?.startAnimating()
+        }
+    }
+    
+    func stopAndHideActivity() {
+        DispatchQueue.main.async {
+            self.spinner?.stopAnimating()
+            self.spinner?.hidesWhenStopped = true
+        }
+    }
+    
+    func showDataInLabel(data: DetailMarvelURL) {
+        
+        self.presenter?.pushDataDesc(sendData: data)
+        
+        DispatchQueue.main.async {
+            let cad = data.datoURL
+            let index = data.datoURL.firstIndex(of: "?")
+            let urlDesc = String(cad[cad.startIndex..<index!])
+            self.labelDetalle?.text = urlDesc
         }
         
         

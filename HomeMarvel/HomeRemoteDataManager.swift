@@ -61,6 +61,7 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
         }
                 
         let characters = "characters?"
+        let charactersId = "characters/"
         
         let apiURL = baseUrl + characters + apiKeyTsHash //+ "&offset=0&nameStartsWith=Spi"
         
@@ -76,7 +77,7 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
                     guard let nameMarvel = datMarvel.name else {return}
                     guard let imageMarvelUrl = datMarvel.thumbnail?.path else {return}
                     guard let imageMarvelExt = datMarvel.thumbnail?.thumbnailExtension?.rawValue else {return}
-                    let urlId = baseUrl + String(idMarvel) + apiKeyTsHash
+                    let urlId = baseUrl + charactersId + String(idMarvel) + "?" + apiKeyTsHash
                     let imageMarvel = imageMarvelUrl + "." + imageMarvelExt
                     let url = URL(string: imageMarvel)
                     self.downloadImage(from: url!, name: nameMarvel, id: idMarvel, urlId: urlId )

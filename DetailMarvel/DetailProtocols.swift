@@ -13,6 +13,10 @@ protocol DetailViewProtocol: AnyObject {
     // PRESENTER -> VIEW
     var presenter: DetailPresenterProtocol? { get set }
     
+    func presenterPushDataView(recievedData: DetailMarvelDesc)
+    func cargarActivity()
+    func stopAndHideActivity()
+
     func showDataInLabel(data: DetailMarvelURL)
 }
 
@@ -28,10 +32,12 @@ protocol DetailPresenterProtocol: AnyObject {
     var wireFrame: DetailWireFrameProtocol? { get set }
     var detail: DetailMarvelURL? {get set}
     func viewDidLoad()
+    func pushDataDesc(sendData: DetailMarvelURL )
 }
 
 protocol DetailInteractorOutputProtocol: AnyObject {
 // INTERACTOR -> PRESENTER
+    func interactorPushDataPresenter( receiveData:DetailMarvelDesc )
 }
 
 protocol DetailInteractorInputProtocol: AnyObject {
@@ -39,6 +45,10 @@ protocol DetailInteractorInputProtocol: AnyObject {
     var presenter: DetailInteractorOutputProtocol? { get set }
     var localDatamanager: DetailLocalDataManagerInputProtocol? { get set }
     var remoteDatamanager: DetailRemoteDataManagerInputProtocol? { get set }
+    
+    //Función que permite al interactor gestionar datos con la ejecución
+    func interactorGetData()
+    func pushDataDesc(sendData: DetailMarvelURL )
 }
 
 protocol DetailDataManagerInputProtocol: AnyObject {
@@ -48,10 +58,13 @@ protocol DetailDataManagerInputProtocol: AnyObject {
 protocol DetailRemoteDataManagerInputProtocol: AnyObject {
     // INTERACTOR -> REMOTEDATAMANAGER
     var remoteRequestHandler: DetailRemoteDataManagerOutputProtocol? { get set }
+    func externalGetData()
+    func getUrl(dataUrl: DetailMarvelURL)
 }
 
 protocol DetailRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
+    func remoteDataManagerCallBackData(with category: DetailMarvelDesc)
 }
 
 protocol DetailLocalDataManagerInputProtocol: AnyObject {
