@@ -47,7 +47,6 @@ protocol DetailInteractorInputProtocol: AnyObject {
     var remoteDatamanager: DetailRemoteDataManagerInputProtocol? { get set }
     
     //Función que permite al interactor gestionar datos con la ejecución
-    func interactorGetData()
     func pushDataDesc(sendData: DetailMarvelURL )
 }
 
@@ -58,7 +57,6 @@ protocol DetailDataManagerInputProtocol: AnyObject {
 protocol DetailRemoteDataManagerInputProtocol: AnyObject {
     // INTERACTOR -> REMOTEDATAMANAGER
     var remoteRequestHandler: DetailRemoteDataManagerOutputProtocol? { get set }
-    func externalGetData()
     func getUrl(dataUrl: DetailMarvelURL)
 }
 

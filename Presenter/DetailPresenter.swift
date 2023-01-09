@@ -20,7 +20,6 @@ class DetailPresenter: DetailPresenterProtocol  {
     func viewDidLoad() {
 
         //Traer datos con url del detalle
-        interactor?.interactorGetData()
         view?.cargarActivity()
         
         if let datoRecibido = detail {

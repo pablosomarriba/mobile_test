@@ -37,12 +37,5 @@ class DetailRemoteDataManager:DetailRemoteDataManagerInputProtocol {
     
     
     var remoteRequestHandler: DetailRemoteDataManagerOutputProtocol?
-    
-    func externalGetData() {
-        print()
         
-    }
-    
-    
-    
 }

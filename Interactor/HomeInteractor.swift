@@ -32,7 +32,6 @@ extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
         for dat in category {
             let marvelGroup = MarvelGroupData(id: dat.id, name: dat.name, image: dat.image, url: dat.url)
             self.arrayMarvel.append(marvelGroup)
-            print(arrayMarvel)
         }
         
         //Pasarle los datos al presenter

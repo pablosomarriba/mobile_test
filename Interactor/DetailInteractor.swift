@@ -17,12 +17,7 @@ class DetailInteractor: DetailInteractorInputProtocol {
     var remoteDatamanager: DetailRemoteDataManagerInputProtocol?
     
     var arrayMarvelDesc = [DetailMarvelDesc]()
-    
-    func interactorGetData() {
-        //Decirle a la capa de conexión external data manager que tiene que traer unos datos
-        remoteDatamanager?.externalGetData()
-    }
-    
+        
     func pushDataDesc(sendData: DetailMarvelURL) {
         remoteDatamanager?.getUrl(dataUrl: sendData)
     }

@@ -22,7 +22,6 @@ extension HomePresenter: HomePresenterProtocol {
     
     // TODO: implement presenter methods
     func viewDidLoad() {
-        print("llamada desde la vista")
         
         //Decirle al interactor que quiere traer unos datos
         interactor?.interactorGetData()
