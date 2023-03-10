@@ -43,29 +43,7 @@ class HomeRemoteDataManager:HomeRemoteDataManagerInputProtocol {
     }
     
     func externalGetData() {
-                
-       // var apiKeyTsHash: String {
-       //     get {
-       //         //let limit = 1
-       //         let apikey = "cdb9b66985f6523d88b3b820037f895f"
-       //         let ts = "1529959176"
-       //         let hash = "fc9bc3330d53b8b9d28c88aa707473b7"
-       //         //return "apikey=\(apikey)&ts=\(ts)&hash=\(hash)&limit=\(limit)"
-       //         return "apikey=\(apikey)&ts=\(ts)&hash=\(hash)"
-       //     }
-       // }
-       //
-       // var baseUrl: String {
-       //     get {
-       //         return "https://gateway.marvel.com/v1/public/"
-       //     }
-       // }
-       //
-       // let characters = "characters?"
-       // let charactersId = "characters/"
-       //
-       // let apiURL = baseUrl + characters + apiKeyTsHash //+ "&offset=0&nameStartsWith=Spi"
-        
+                        
         env.getEnv()
         
         _ = AF.request(env.apiURL,method: HTTPMethod.get, encoding: JSONEncoding.default).responseDecodable(of: MarvelListData.self) { response in
