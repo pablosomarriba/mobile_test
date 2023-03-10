@@ -36,5 +36,5 @@ Al pulsar sobre un personaje, se obtiene el detalle utilizando el id proporciona
 
 ## Unit test
 
-Pendiente.
+Test unitario que verifica que se instancia correcamente en la vista de detalle el label de descripción y que tenga contenido.
 

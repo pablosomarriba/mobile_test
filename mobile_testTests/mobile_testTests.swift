@@ -9,28 +9,40 @@ import XCTest
 @testable import mobile_test
 
 final class mobile_testTests: XCTestCase {
+    
+    var sut: DetailView!
 
+    //Llamada antes de la invocación en la clase.
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        sut = DetailView()
     }
 
+    //Llamada después de la invocación en la clase.
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    //Puede exister varios testExmple que se ejecutaran en orden alfabético
+    //Todos los métodos han de empezar por la palabra test para ser reconocidos
+    //Usar XCTAssert para la verificación de los tests.
+    
+    //Prueba que instancia el label y muestra texto.
+    func test_DetailView() async {
+        let datoURLMock = "url_prueba?parametros_url"
+        let datosMarvelMock = DetailMarvelURL(datoURL: datoURLMock)
+        await sut.buildLabelDetalle()
+        await sut.showDataInLabel(data: datosMarvelMock)
+                
+        guard let _ = await self.sut.labelDetalle else {
+            return XCTAssertNil("labelDetalle - valor nulo")
         }
+        guard let valorText = await self.sut.labelDetalle?.text?.isEmpty else {
+            return XCTAssertNil("labelDetalle.text - valor nulo")
+        }
+        XCTAssertFalse(valorText,"El resutado esperado es false, pero recibido \(valorText) por label vacio")
+        print("valorText => \(valorText)")
+
+        
     }
 
 }
