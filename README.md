@@ -1,6 +1,6 @@
 # App mobile_test
 
-Ejercio para la creación de la estructura de una app que muestre un listado de los personajes Marvel y permite ver el detalle de cada uno de ellos de manera individual.
+Ejercicio para la creación de la estructura de una app que muestre un listado de los personajes Marvel y que permita ver el detalle de cada uno de ellos de manera individual.
 
 ## Swift
 versión 5.6
@@ -36,5 +36,5 @@ Al pulsar sobre un personaje, se obtiene el detalle utilizando el id proporciona
 
 ## Unit test
 
-Pendiente.
+Test unitario que verifica que se instancia correcamente en la vista de detalle el label de descripción y que tenga contenido.
 
