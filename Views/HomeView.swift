@@ -56,7 +56,7 @@ extension HomeView: HomeViewProtocol {
 
     // TODO: implement view output methods
     
-    //Inyección de dependencias => Paso los datos de un objeto a otro
+    //Paso los datos de un objeto a otro
     func presenterPushDataView(recievedData: [MarvelGroupData]) {
         
         arrayViewMarvel = recievedData

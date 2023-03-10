@@ -22,7 +22,10 @@ class DetailView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
-        
+        self.buildLabelDetalle()
+    }
+    
+    func buildLabelDetalle() {
         self.view.backgroundColor = .white
         self.labelDetalle = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 350))
         self.labelDetalle?.font = UIFont.preferredFont(forTextStyle: .footnote)
@@ -64,10 +67,11 @@ extension DetailView: DetailViewProtocol {
         self.presenter?.pushDataDesc(sendData: data)
         
         DispatchQueue.main.async {
-            let cad = data.datoURL
-            let index = data.datoURL.firstIndex(of: "?")
-            let urlDesc = String(cad[cad.startIndex..<index!])
-            self.labelDetalle?.text = urlDesc
+            var cad = data.datoURL
+            if let index = data.datoURL.firstIndex(of: "?") {
+                cad = String(cad[cad.startIndex..<index])
+            }
+            self.labelDetalle?.text = cad
         }
         
         
